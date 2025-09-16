@@ -8,28 +8,28 @@
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f9;
-      margin: 0;
       padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     h2 {
       text-align: center;
-      color: #333;
-    }
-    form {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .question {
       margin-bottom: 20px;
     }
+    .question {
+      margin-bottom: 15px;
+    }
     .stars {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-start;
+      direction: rtl;
+      display: inline-flex;
     }
     .stars input {
       display: none;
@@ -38,6 +38,7 @@
       font-size: 25px;
       color: #ccc;
       cursor: pointer;
+      padding: 0 3px;
     }
     .stars input:checked ~ label,
     .stars label:hover,
@@ -46,105 +47,103 @@
     }
     textarea {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       border-radius: 5px;
       border: 1px solid #ccc;
+      margin-top: 5px;
     }
     button {
       width: 100%;
       padding: 12px;
-      background: #004aad;
+      background: #003399;
       color: white;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
       font-size: 16px;
+      cursor: pointer;
     }
     button:hover {
-      background: #003080;
+      background: #001a66;
     }
   </style>
 </head>
 <body>
-
-  <h2>Kritik & Saran – Villa Zio Bungalow</h2>
-  <form id="ratingForm">
-    <div class="question">
-      <p>1. Bagaimana pengalaman menginap Anda secara keseluruhan?</p>
-      <div class="stars">
-        <input type="radio" name="pengalaman" id="pengalaman5" value="5"><label for="pengalaman5">⭐</label>
-        <input type="radio" name="pengalaman" id="pengalaman4" value="4"><label for="pengalaman4">⭐</label>
-        <input type="radio" name="pengalaman" id="pengalaman3" value="3"><label for="pengalaman3">⭐</label>
-        <input type="radio" name="pengalaman" id="pengalaman2" value="2"><label for="pengalaman2">⭐</label>
-        <input type="radio" name="pengalaman" id="pengalaman1" value="1"><label for="pengalaman1">⭐</label>
+  <div class="container">
+    <h2>Kritik & Saran – Villa Zio Bungalow</h2>
+    <form id="rating-form">
+      <div class="question">
+        <label>1. Bagaimana pengalaman menginap Anda secara keseluruhan?</label>
+        <div class="stars">
+          <input type="radio" name="pengalaman" value="5" id="exp5"><label for="exp5">★</label>
+          <input type="radio" name="pengalaman" value="4" id="exp4"><label for="exp4">★</label>
+          <input type="radio" name="pengalaman" value="3" id="exp3"><label for="exp3">★</label>
+          <input type="radio" name="pengalaman" value="2" id="exp2"><label for="exp2">★</label>
+          <input type="radio" name="pengalaman" value="1" id="exp1"><label for="exp1">★</label>
+        </div>
       </div>
-    </div>
 
-    <div class="question">
-      <p>2. Bagaimana penilaian Anda terhadap kebersihan, kenyamanan, dan fasilitas?</p>
-      <div class="stars">
-        <input type="radio" name="kebersihan" id="kebersihan5" value="5"><label for="kebersihan5">⭐</label>
-        <input type="radio" name="kebersihan" id="kebersihan4" value="4"><label for="kebersihan4">⭐</label>
-        <input type="radio" name="kebersihan" id="kebersihan3" value="3"><label for="kebersihan3">⭐</label>
-        <input type="radio" name="kebersihan" id="kebersihan2" value="2"><label for="kebersihan2">⭐</label>
-        <input type="radio" name="kebersihan" id="kebersihan1" value="1"><label for="kebersihan1">⭐</label>
+      <div class="question">
+        <label>2. Bagaimana penilaian Anda terhadap kebersihan, kenyamanan, dan fasilitas?</label>
+        <div class="stars">
+          <input type="radio" name="kebersihan" value="5" id="clean5"><label for="clean5">★</label>
+          <input type="radio" name="kebersihan" value="4" id="clean4"><label for="clean4">★</label>
+          <input type="radio" name="kebersihan" value="3" id="clean3"><label for="clean3">★</label>
+          <input type="radio" name="kebersihan" value="2" id="clean2"><label for="clean2">★</label>
+          <input type="radio" name="kebersihan" value="1" id="clean1"><label for="clean1">★</label>
+        </div>
       </div>
-    </div>
 
-    <div class="question">
-      <p>3. Bagaimana pelayanan staf selama Anda menginap?</p>
-      <div class="stars">
-        <input type="radio" name="pelayanan" id="pelayanan5" value="5"><label for="pelayanan5">⭐</label>
-        <input type="radio" name="pelayanan" id="pelayanan4" value="4"><label for="pelayanan4">⭐</label>
-        <input type="radio" name="pelayanan" id="pelayanan3" value="3"><label for="pelayanan3">⭐</label>
-        <input type="radio" name="pelayanan" id="pelayanan2" value="2"><label for="pelayanan2">⭐</label>
-        <input type="radio" name="pelayanan" id="pelayanan1" value="1"><label for="pelayanan1">⭐</label>
+      <div class="question">
+        <label>3. Bagaimana pelayanan staf selama Anda menginap?</label>
+        <div class="stars">
+          <input type="radio" name="pelayanan" value="5" id="service5"><label for="service5">★</label>
+          <input type="radio" name="pelayanan" value="4" id="service4"><label for="service4">★</label>
+          <input type="radio" name="pelayanan" value="3" id="service3"><label for="service3">★</label>
+          <input type="radio" name="pelayanan" value="2" id="service2"><label for="service2">★</label>
+          <input type="radio" name="pelayanan" value="1" id="service1"><label for="service1">★</label>
+        </div>
       </div>
-    </div>
 
-    <div class="question">
-      <p>4. Apa yang paling Anda sukai dari Villa Zio Bungalow?</p>
-      <textarea name="suka" rows="3"></textarea>
-    </div>
+      <div class="question">
+        <label>4. Apa yang paling Anda sukai dari Villa Zio Bungalow?</label>
+        <textarea id="suka" rows="2"></textarea>
+      </div>
 
-    <div class="question">
-      <p>5. Apa yang menurut Anda perlu ditingkatkan?</p>
-      <textarea name="perbaikan" rows="3"></textarea>
-    </div>
+      <div class="question">
+        <label>5. Apa yang menurut Anda perlu ditingkatkan?</label>
+        <textarea id="perbaikan" rows="2"></textarea>
+      </div>
 
-    <button type="submit">Kirim</button>
-  </form>
+      <button type="submit">Kirim</button>
+    </form>
+  </div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxcC6sqeP7ov4QtLPNwnZgJQHdR2vMtFPnTN1_n3lG_pI-DgpTzM6ZDjsN7RsIVam5c5A/exec"; // ganti dengan /exec URL kamu
-    const form = document.getElementById("ratingForm");
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxcC6sqeP7ov4QtLPNwnZgJQHdR2vMtFPnTN1_n3lG_pI-DgpTzM6ZDjsN7RsIVam5c5A/exec";
+    const form = document.getElementById("rating-form");
 
     form.addEventListener("submit", e => {
       e.preventDefault();
-      
       const data = {
-        pengalaman: form.pengalaman.value,
-        kebersihan: form.kebersihan.value,
-        pelayanan: form.pelayanan.value,
-        suka: form.suka.value,
-        perbaikan: form.perbaikan.value
+        pengalaman: document.querySelector('input[name="pengalaman"]:checked')?.value || "",
+        kebersihan: document.querySelector('input[name="kebersihan"]:checked')?.value || "",
+        pelayanan: document.querySelector('input[name="pelayanan"]:checked')?.value || "",
+        suka: document.getElementById("suka").value,
+        perbaikan: document.getElementById("perbaikan").value
       };
 
       fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
+        mode: "no-cors", // penting agar bisa dari GitHub Pages
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
       })
-      .then(response => response.json())
-      .then(result => {
-        alert("Terima kasih! Data berhasil dikirim 😊");
+      .then(() => {
+        alert("Terima kasih! Data berhasil dikirim ✅");
         form.reset();
       })
-      .catch(error => {
+      .catch(() => {
         alert("Gagal mengirim data 😢");
-        console.error(error);
       });
     });
   </script>
