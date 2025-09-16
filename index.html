@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Rating</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    .rating {
+      direction: rtl;
+      unicode-bidi: bidi-override;
+      display: inline-flex;
+    }
+    .rating input {
+      display: none;
+    }
+    .rating label {
+      font-size: 40px;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .rating input:checked ~ label,
+    .rating label:hover,
+    .rating label:hover ~ label {
+      color: gold;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, textarea {
+      width: 300px;
+      padding: 8px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <h2>Kasih Rating & Komentar</h2>
+
+  <form method="POST" action="https://script.google.com/macros/s/AKfycbytB14trkVimxrjhWJrZkOpOPB1Z3iYIFBmYsnyFkjZ32qNjNNwtfUrlH46H7RnRxndnQ/exec">
+    
+    <!-- Rating -->
+    <div class="rating">
+      <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+      <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+      <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+      <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+      <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+    </div>
+    <br><br>
+
+    <!-- Nama -->
+    <input type="text" name="nama" placeholder="Nama Anda" required><br>
+
+    <!-- Komentar -->
+    <textarea name="komentar" rows="4" placeholder="Tulis komentar..." required></textarea><br>
+
+    <!-- Tombol Kirim -->
+    <button type="submit">Kirim</button>
+  </form>
+</body>
+</html>
