@@ -3,76 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Rating</title>
+  <title>Form Rating Zio Bungalow</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 50px;
-    }
-    .rating {
-      direction: rtl;
-      unicode-bidi: bidi-override;
-      display: inline-flex;
-    }
-    .rating input {
-      display: none;
-    }
-    .rating label {
-      font-size: 40px;
-      color: #ccc;
-      cursor: pointer;
-    }
+    body { font-family: Arial, sans-serif; text-align: center; margin: 40px; }
+    .rating { direction: rtl; unicode-bidi: bidi-override; display: inline-flex; }
+    .rating input { display: none; }
+    .rating label { font-size: 30px; color: #ccc; cursor: pointer; }
     .rating input:checked ~ label,
     .rating label:hover,
-    .rating label:hover ~ label {
-      color: gold;
-    }
-    form {
-      margin-top: 20px;
-    }
-    input, textarea {
-      width: 300px;
-      padding: 8px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #28a745;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #218838;
-    }
+    .rating label:hover ~ label { color: gold; }
+    form { margin-top: 20px; }
+    input, textarea { width: 300px; padding: 8px; margin: 8px 0; }
+    button { padding: 10px 20px; font-size: 16px; background: green; color: white; border: none; cursor: pointer; }
+    button:hover { background: darkgreen; }
   </style>
 </head>
 <body>
-  <h2>Kasih Rating & Komentar</h2>
+  <h2>Rating & Masukan untuk Zio Bungalow</h2>
 
-  <form method="POST" action="https://script.google.com/macros/s/AKfycbytB14trkVimxrjhWJrZkOpOPB1Z3iYIFBmYsnyFkjZ32qNjNNwtfUrlH46H7RnRxndnQ/exec">
-    
-    <!-- Rating -->
+  <form id="ratingForm">
+    <label>Nama:</label><br>
+    <input type="text" name="nama" required><br><br>
+
+    <label>Bagaimana pengalaman menginap Anda secara keseluruhan?</label><br>
     <div class="rating">
-      <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-      <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-      <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-      <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-      <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-    </div>
-    <br><br>
+      <input type="radio" id="star5" name="pengalaman" value="5"><label for="star5">★</label>
+      <input type="radio" id="star4" name="pengalaman" value="4"><label for="star4">★</label>
+      <input type="radio" id="star3" name="pengalaman" value="3"><label for="star3">★</label>
+      <input type="radio" id="star2" name="pengalaman" value="2"><label for="star2">★</label>
+      <input type="radio" id="star1" name="pengalaman" value="1"><label for="star1">★</label>
+    </div><br><br>
 
-    <!-- Nama -->
-    <input type="text" name="nama" placeholder="Nama Anda" required><br>
+    <label>Bagaimana penilaian Anda terhadap kebersihan, kenyamanan, dan fasilitas?</label><br>
+    <div class="rating">
+      <input type="radio" id="clean5" name="kebersihan" value="5"><label for="clean5">★</label>
+      <input type="radio" id="clean4" name="kebersihan" value="4"><label for="clean4">★</label>
+      <input type="radio" id="clean3" name="kebersihan" value="3"><label for="clean3">★</label>
+      <input type="radio" id="clean2" name="kebersihan" value="2"><label for="clean2">★</label>
+      <input type="radio" id="clean1" name="kebersihan" value="1"><label for="clean1">★</label>
+    </div><br><br>
 
-    <!-- Komentar -->
-    <textarea name="komentar" rows="4" placeholder="Tulis komentar..." required></textarea><br>
+    <label>Bagaimana pelayanan staf selama Anda menginap?</label><br>
+    <div class="rating">
+      <input type="radio" id="staff5" name="pelayanan" value="5"><label for="staff5">★</label>
+      <input type="radio" id="staff4" name="pelayanan" value="4"><label for="staff4">★</label>
+      <input type="radio" id="staff3" name="pelayanan" value="3"><label for="staff3">★</label>
+      <input type="radio" id="staff2" name="pelayanan" value="2"><label for="staff2">★</label>
+      <input type="radio" id="staff1" name="pelayanan" value="1"><label for="staff1">★</label>
+    </div><br><br>
 
-    <!-- Tombol Kirim -->
+    <label>Apa yang paling Anda sukai dari Villa Zio Bungalow?</label><br>
+    <textarea name="suka" rows="3" required></textarea><br>
+
+    <label>Apa yang menurut Anda perlu ditingkatkan?</label><br>
+    <textarea name="saran" rows="3" required></textarea><br>
+
     <button type="submit">Kirim</button>
   </form>
+
+  <p id="status"></p>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbytB14trkVimxrjhWJrZkOpOPB1Z3iYIFBmYsnyFkjZ32qNjNNwtfUrlH46H7RnRxndnQ/exec";
+    const form = document.getElementById("ratingForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: "POST", body: new FormData(form)})
+        .then(response => {
+          status.innerText = "✅ Terima kasih! Data berhasil dikirim.";
+          form.reset();
+        })
+        .catch(error => {
+          status.innerText = "❌ Terjadi kesalahan, coba lagi.";
+          console.error("Error!", error.message);
+        });
+    });
+  </script>
 </body>
 </html>
