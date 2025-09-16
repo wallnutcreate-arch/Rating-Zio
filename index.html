@@ -2,84 +2,126 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Rating Zio Bungalow</title>
+  <title>Kritik & Saran – Villa Zio Bungalow</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin: 40px; }
-    .rating { direction: rtl; unicode-bidi: bidi-override; display: inline-flex; }
-    .rating input { display: none; }
-    .rating label { font-size: 30px; color: #ccc; cursor: pointer; }
-    .rating input:checked ~ label,
-    .rating label:hover,
-    .rating label:hover ~ label { color: gold; }
-    form { margin-top: 20px; }
-    input, textarea { width: 300px; padding: 8px; margin: 8px 0; }
-    button { padding: 10px 20px; font-size: 16px; background: green; color: white; border: none; cursor: pointer; }
-    button:hover { background: darkgreen; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      max-width: 600px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .stars {
+      display: flex;
+      gap: 5px;
+      cursor: pointer;
+      font-size: 30px;
+      margin: 5px 0 15px 0;
+    }
+    .stars span {
+      color: lightgray;
+      transition: color 0.2s;
+    }
+    .stars span.active {
+      color: gold;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    textarea, button {
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
   </style>
 </head>
 <body>
-  <h2>Rating & Masukan untuk Zio Bungalow</h2>
+
+  <h2>Kritik & Saran – Villa Zio Bungalow</h2>
 
   <form id="ratingForm">
-    <label>Nama:</label><br>
-    <input type="text" name="nama" required><br><br>
+    <label>1. Bagaimana pengalaman menginap Anda secara keseluruhan?</label>
+    <div class="stars" data-field="pengalaman"></div>
 
-    <label>Bagaimana pengalaman menginap Anda secara keseluruhan?</label><br>
-    <div class="rating">
-      <input type="radio" id="star5" name="pengalaman" value="5"><label for="star5">★</label>
-      <input type="radio" id="star4" name="pengalaman" value="4"><label for="star4">★</label>
-      <input type="radio" id="star3" name="pengalaman" value="3"><label for="star3">★</label>
-      <input type="radio" id="star2" name="pengalaman" value="2"><label for="star2">★</label>
-      <input type="radio" id="star1" name="pengalaman" value="1"><label for="star1">★</label>
-    </div><br><br>
+    <label>2. Bagaimana penilaian Anda terhadap kebersihan, kenyamanan, dan fasilitas?</label>
+    <div class="stars" data-field="kebersihan"></div>
 
-    <label>Bagaimana penilaian Anda terhadap kebersihan, kenyamanan, dan fasilitas?</label><br>
-    <div class="rating">
-      <input type="radio" id="clean5" name="kebersihan" value="5"><label for="clean5">★</label>
-      <input type="radio" id="clean4" name="kebersihan" value="4"><label for="clean4">★</label>
-      <input type="radio" id="clean3" name="kebersihan" value="3"><label for="clean3">★</label>
-      <input type="radio" id="clean2" name="kebersihan" value="2"><label for="clean2">★</label>
-      <input type="radio" id="clean1" name="kebersihan" value="1"><label for="clean1">★</label>
-    </div><br><br>
+    <label>3. Bagaimana pelayanan staf selama Anda menginap?</label>
+    <div class="stars" data-field="pelayanan"></div>
 
-    <label>Bagaimana pelayanan staf selama Anda menginap?</label><br>
-    <div class="rating">
-      <input type="radio" id="staff5" name="pelayanan" value="5"><label for="staff5">★</label>
-      <input type="radio" id="staff4" name="pelayanan" value="4"><label for="staff4">★</label>
-      <input type="radio" id="staff3" name="pelayanan" value="3"><label for="staff3">★</label>
-      <input type="radio" id="staff2" name="pelayanan" value="2"><label for="staff2">★</label>
-      <input type="radio" id="staff1" name="pelayanan" value="1"><label for="staff1">★</label>
-    </div><br><br>
+    <label>4. Apa yang paling Anda sukai dari Villa Zio Bungalow?</label>
+    <textarea name="suka" required></textarea>
 
-    <label>Apa yang paling Anda sukai dari Villa Zio Bungalow?</label><br>
-    <textarea name="suka" rows="3" required></textarea><br>
-
-    <label>Apa yang menurut Anda perlu ditingkatkan?</label><br>
-    <textarea name="saran" rows="3" required></textarea><br>
+    <label>5. Apa yang menurut Anda perlu ditingkatkan?</label>
+    <textarea name="perbaikan" required></textarea>
 
     <button type="submit">Kirim</button>
   </form>
 
-  <p id="status"></p>
-
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbytB14trkVimxrjhWJrZkOpOPB1Z3iYIFBmYsnyFkjZ32qNjNNwtfUrlH46H7RnRxndnQ/exec";
-    const form = document.getElementById("ratingForm");
-    const status = document.getElementById("status");
+    const scriptURL = "PASTE_URL_WEBAPP_DISINI"; // Ganti dengan URL Web App kamu
 
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form)})
-        .then(response => {
-          status.innerText = "✅ Terima kasih! Data berhasil dikirim.";
-          form.reset();
-        })
-        .catch(error => {
-          status.innerText = "❌ Terjadi kesalahan, coba lagi.";
-          console.error("Error!", error.message);
+    // --- Generate stars (5 bintang per pertanyaan) ---
+    document.querySelectorAll(".stars").forEach(container => {
+      const field = container.getAttribute("data-field");
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement("span");
+        star.innerHTML = "&#9733;";
+        star.dataset.value = i;
+        star.addEventListener("click", () => {
+          container.querySelectorAll("span").forEach(s => s.classList.remove("active"));
+          for (let j = 0; j < i; j++) {
+            container.querySelectorAll("span")[j].classList.add("active");
+          }
+          container.dataset.selected = i;
         });
+        container.appendChild(star);
+      }
+    });
+
+    // --- Submit form ---
+    document.getElementById("ratingForm").addEventListener("submit", e => {
+      e.preventDefault();
+
+      const data = {
+        pengalaman: document.querySelector('[data-field="pengalaman"]').dataset.selected || "",
+        kebersihan: document.querySelector('[data-field="kebersihan"]').dataset.selected || "",
+        pelayanan: document.querySelector('[data-field="pelayanan"]').dataset.selected || "",
+        suka: e.target.suka.value,
+        perbaikan: e.target.perbaikan.value
+      };
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(res => {
+        alert("Terima kasih! Kritik & saran Anda sudah terkirim 👍");
+        e.target.reset();
+        document.querySelectorAll(".stars span").forEach(s => s.classList.remove("active"));
+      })
+      .catch(err => {
+        alert("Gagal mengirim data 😢");
+        console.error(err);
+      });
     });
   </script>
+
 </body>
 </html>
