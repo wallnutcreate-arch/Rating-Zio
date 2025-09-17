@@ -45,7 +45,7 @@
     .stars label:hover ~ label {
       color: gold;
     }
-    textarea {
+    textarea, input {
       width: 100%;
       padding: 8px;
       border-radius: 5px;
@@ -71,6 +71,17 @@
   <div class="container">
     <h2>Kritik & Saran – Villa Zio Bungalow</h2>
     <form id="rating-form">
+
+      <div class="question">
+        <label>Nama Anda:</label>
+        <input type="text" id="nama" required>
+      </div>
+
+      <div class="question">
+        <label>Tanggal Pemesanan:</label>
+        <input type="date" id="tanggal" required>
+      </div>
+
       <div class="question">
         <label>1. Bagaimana pengalaman menginap Anda secara keseluruhan?</label>
         <div class="stars">
@@ -125,6 +136,8 @@
     form.addEventListener("submit", e => {
       e.preventDefault();
       const data = {
+        nama: document.getElementById("nama").value,
+        tanggal: document.getElementById("tanggal").value,
         pengalaman: document.querySelector('input[name="pengalaman"]:checked')?.value || "",
         kebersihan: document.querySelector('input[name="kebersihan"]:checked')?.value || "",
         pelayanan: document.querySelector('input[name="pelayanan"]:checked')?.value || "",
@@ -134,7 +147,7 @@
 
       fetch(scriptURL, {
         method: "POST",
-        mode: "no-cors", // penting agar bisa dari GitHub Pages
+        mode: "no-cors", 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       })
